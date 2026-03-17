@@ -1,12 +1,28 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Phone, Shield, Heart, Zap, ArrowRight, Star, Clock, MapPin,
   CheckCircle, Sparkles, Users, CalendarCheck, Award, MessageCircle,
-  ChevronRight, Quote, Stethoscope, SmilePlus, Baby, Scissors
+  ChevronRight, Quote, Stethoscope, SmilePlus, Baby, Scissors, ChevronDown
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import SectionReveal from "@/components/SectionReveal";
+
+/* ─── Gallery image imports ─── */
 import heroImage from "@/assets/hero-clinic.jpg";
+import exterior from "@/assets/gallery/exterior.jpg";
+import waitingArea from "@/assets/gallery/waiting-area.jpg";
+import waitingArea2 from "@/assets/gallery/waiting-area-2.jpg";
+import reception from "@/assets/gallery/reception.webp";
+import frontDesk from "@/assets/gallery/front-desk.jpg";
+import dentalChair from "@/assets/gallery/dental-chair.webp";
+import operatory from "@/assets/gallery/operatory.jpg";
+import treatment1 from "@/assets/gallery/treatment-1.webp";
+import treatment2 from "@/assets/gallery/treatment-2.webp";
+import treatment3 from "@/assets/gallery/treatment-3.jpg";
+import clinicBanner from "@/assets/gallery/clinic-banner.webp";
+import entranceSign from "@/assets/gallery/entrance-sign.jpg";
+import orthodontics from "@/assets/gallery/orthodontics.webp";
 
 /* ─── Data ─── */
 const services = [
@@ -47,6 +63,15 @@ const faqs = [
   { q: "Is teeth whitening safe?", a: "Absolutely. We use clinically proven, dentist-supervised whitening treatments that are safe for your enamel." },
 ];
 
+const galleryPreview = [
+  { src: dentalChair, alt: "Modern dental chair" },
+  { src: operatory, alt: "Dental operatory" },
+  { src: treatment1, alt: "Treatment in progress" },
+  { src: reception, alt: "Reception area" },
+  { src: waitingArea, alt: "Waiting area" },
+  { src: orthodontics, alt: "Orthodontic care" },
+];
+
 /* ─── Component ─── */
 const Index = () => (
   <div className="overflow-hidden">
@@ -55,92 +80,95 @@ const Index = () => (
     <section className="relative min-h-[100vh] flex items-center">
       {/* Background image */}
       <div className="absolute inset-0">
-        <img src={heroImage} alt="Modern dental clinic" className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-br from-foreground/90 via-foreground/70 to-foreground/40" />
+        <img src={exterior} alt="Rubi Smile Dental Clinic exterior" className="h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-br from-foreground/90 via-foreground/75 to-foreground/50" />
       </div>
 
       {/* Decorative glow */}
       <div className="absolute inset-0 hero-glow pointer-events-none" />
 
-      {/* Floating accent shapes */}
-      <motion.div
-        className="absolute top-20 right-[15%] w-72 h-72 rounded-full bg-accent/10 blur-3xl"
-        animate={{ y: [0, -20, 0], scale: [1, 1.05, 1] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-32 left-[10%] w-48 h-48 rounded-full bg-accent/8 blur-2xl"
-        animate={{ y: [0, 15, 0], scale: [1, 0.95, 1] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-
       <div className="container relative mx-auto px-6 py-32 lg:py-40">
-        <div className="max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-          >
-            <span className="inline-flex items-center gap-2 rounded-full bg-accent/20 backdrop-blur-sm px-5 py-2 font-display text-xs font-semibold text-primary-foreground mb-8 border border-accent/20">
-              <Sparkles className="h-3.5 w-3.5" />
-              Now Accepting NHIS Patients
-            </span>
-          </motion.div>
-
-          <motion.h1
-            className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-primary-foreground leading-[1.05] mb-8"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
-          >
-            Expert dental care
-            <br />
-            that feels like{" "}
-            <span className="relative">
-              <span className="text-accent">family</span>
-              <motion.span
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-accent/60 rounded-full"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.6, delay: 0.9 }}
-                style={{ transformOrigin: "left" }}
-              />
-            </span>
-            .
-          </motion.h1>
-
-          <motion.p
-            className="font-body text-lg sm:text-xl text-primary-foreground/75 leading-relaxed max-w-xl mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-          >
-            From routine cleanings to advanced oral surgery, Rubi Smile provides gentle, modern dentistry in the heart of Karu, Abuja.
-          </motion.p>
-
-          <motion.div
-            className="flex flex-wrap gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            <a
-              href="https://wa.me/2349038535214"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-2 rounded-full bg-accent px-8 py-4 font-display text-sm font-bold text-accent-foreground shadow-lg shadow-accent/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent/30 active:scale-95"
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Text content */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              <MessageCircle className="h-4 w-4" />
-              Book via WhatsApp
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </a>
-            <a
-              href="tel:+2349024403837"
-              className="flex items-center gap-2 rounded-full border-2 border-primary-foreground/30 px-8 py-4 font-display text-sm font-bold text-primary-foreground transition-all duration-300 hover:bg-primary-foreground/10 hover:border-primary-foreground/50"
+              <span className="inline-flex items-center gap-2 rounded-full bg-accent/20 backdrop-blur-sm px-5 py-2 font-display text-xs font-semibold text-primary-foreground mb-8 border border-accent/20">
+                <Sparkles className="h-3.5 w-3.5" />
+                Now Accepting NHIS Patients
+              </span>
+            </motion.div>
+
+            <motion.h1
+              className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-primary-foreground leading-[1.05] mb-8"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              <Phone className="h-4 w-4" />
-              Call Us Now
-            </a>
+              Welcome to
+              <br />
+              <span className="text-accent">Rubi Smile</span> Dental Care
+            </motion.h1>
+
+            <motion.p
+              className="font-body text-lg sm:text-xl text-primary-foreground/75 leading-relaxed max-w-xl mb-12"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+            >
+              Your partner for a complete, confident smile. We blend cutting-edge dental care with a warm, patient-centered environment for every member of the family.
+            </motion.p>
+
+            <motion.div
+              className="flex flex-wrap gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              <Link
+                to="/services"
+                className="group flex items-center gap-2 rounded-full bg-accent px-8 py-4 font-display text-sm font-bold text-accent-foreground shadow-lg shadow-accent/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent/30 active:scale-95"
+              >
+                Our Services
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+              <a
+                href="https://wa.me/2349038535214"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 rounded-full border-2 border-primary-foreground/30 px-8 py-4 font-display text-sm font-bold text-primary-foreground transition-all duration-300 hover:bg-primary-foreground/10 hover:border-primary-foreground/50"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Book a Visit
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Hero image collage — D'Bridge style overlapping images */}
+          <motion.div
+            className="relative hidden lg:block"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.9, delay: 0.3 }}
+          >
+            <div className="relative w-full aspect-[4/5]">
+              {/* Main large image */}
+              <div className="absolute inset-0 rounded-3xl overflow-hidden shadow-elevated">
+                <img src={waitingArea} alt="Comfortable waiting area" className="h-full w-full object-cover" />
+              </div>
+              {/* Overlapping smaller image */}
+              <motion.div
+                className="absolute -bottom-6 -right-6 w-[55%] aspect-square rounded-2xl overflow-hidden shadow-elevated border-4 border-background"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.7 }}
+              >
+                <img src={frontDesk} alt="Front desk" className="h-full w-full object-cover" />
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
@@ -176,7 +204,53 @@ const Index = () => (
       </div>
     </section>
 
-    {/* ═══════════════════ WHY CHOOSE US — mesh bg ═══════════════════ */}
+    {/* ═══════════════════ ABOUT US — with clinic images ═══════════════════ */}
+    <section className="section-gradient-teal py-24 sm:py-32">
+      <div className="container mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Image collage */}
+          <SectionReveal>
+            <div className="relative">
+              <div className="rounded-3xl overflow-hidden shadow-elevated">
+                <img src={waitingArea2} alt="Spacious clinic interior" className="w-full aspect-[4/3] object-cover" />
+              </div>
+              <motion.div
+                className="absolute -bottom-6 right-6 sm:-bottom-8 sm:right-8 w-[50%] rounded-2xl overflow-hidden shadow-elevated border-4 border-background"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <img src={treatment3} alt="Dental treatment" className="w-full aspect-[4/3] object-cover" />
+              </motion.div>
+            </div>
+          </SectionReveal>
+
+          {/* About text */}
+          <SectionReveal delay={0.2}>
+            <span className="inline-block font-display text-sm font-semibold text-accent uppercase tracking-widest mb-4">About Us</span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground">
+              Achieve a Confident <span className="text-accent">Smile</span> With Us
+            </h2>
+            <p className="font-body text-muted-foreground mt-5 leading-relaxed text-lg">
+              Rubi Smile Dental Clinic is a premier dental practice dedicated to providing comprehensive oral health care. From routine cleanings to advanced oral surgery, we combine modern equipment with a compassionate approach.
+            </p>
+            <p className="font-body text-muted-foreground mt-4 leading-relaxed">
+              Our team is passionate about making dental visits comfortable and anxiety-free for patients of all ages. We accept NHIS insurance, making quality dental care accessible to everyone.
+            </p>
+            <Link
+              to="/about"
+              className="mt-8 group inline-flex items-center gap-2 font-display text-sm font-bold text-accent hover:text-primary transition-colors"
+            >
+              Learn more about us
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </SectionReveal>
+        </div>
+      </div>
+    </section>
+
+    {/* ═══════════════════ WHY CHOOSE US — with personalized care image ═══════════════════ */}
     <section className="section-mesh py-24 sm:py-32">
       <div className="container mx-auto px-6">
         <SectionReveal>
@@ -193,17 +267,24 @@ const Index = () => (
         </SectionReveal>
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {[
-            { icon: Zap, title: "Modern Equipment", desc: "State-of-the-art technology for precise, painless treatments. Digital imaging and sterilized instruments.", gradient: "from-accent/5 to-accent/0" },
-            { icon: Shield, title: "NHIS Accepted", desc: "We accept government insurance for essential dental treatments. Making quality care accessible to all.", gradient: "from-primary/5 to-primary/0" },
-            { icon: Heart, title: "Gentle Approach", desc: "Patient comfort is our priority — anxiety-free dentistry for all ages. We listen, we care, we heal.", gradient: "from-accent/5 to-accent/0" },
+            { icon: Zap, title: "Modern Equipment", desc: "State-of-the-art technology for precise, painless treatments. Digital imaging and sterilized instruments.", gradient: "from-accent/5 to-accent/0", img: dentalChair },
+            { icon: Shield, title: "NHIS Accepted", desc: "We accept government insurance for essential dental treatments. Making quality care accessible to all.", gradient: "from-primary/5 to-primary/0", img: clinicBanner },
+            { icon: Heart, title: "Personalized Care", desc: "We take extra efforts to understand your specific needs and provide tailored dental solutions for lasting results.", gradient: "from-accent/5 to-accent/0", img: treatment2 },
           ].map((item, i) => (
             <SectionReveal key={item.title} delay={i * 0.15}>
-              <div className={`relative rounded-3xl bg-gradient-to-br ${item.gradient} border border-border/50 p-8 sm:p-10 transition-all duration-300 hover:shadow-elevated hover:-translate-y-1 group`}>
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/10 group-hover:bg-accent/20 transition-colors">
-                  <item.icon className="h-7 w-7 text-accent" />
+              <div className={`relative rounded-3xl bg-gradient-to-br ${item.gradient} border border-border/50 overflow-hidden transition-all duration-300 hover:shadow-elevated hover:-translate-y-1 group`}>
+                {/* Image */}
+                <div className="aspect-[16/10] overflow-hidden">
+                  <img src={item.img} alt={item.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 </div>
-                <h3 className="font-display text-xl font-bold text-foreground mb-3">{item.title}</h3>
-                <p className="font-body text-muted-foreground leading-relaxed">{item.desc}</p>
+                {/* Content */}
+                <div className="p-8">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-accent/10 group-hover:bg-accent/20 transition-colors -mt-12 relative z-10 border-4 border-background shadow-card">
+                    <item.icon className="h-6 w-6 text-accent" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold text-foreground mb-3">{item.title}</h3>
+                  <p className="font-body text-muted-foreground leading-relaxed">{item.desc}</p>
+                </div>
               </div>
             </SectionReveal>
           ))}
@@ -211,7 +292,7 @@ const Index = () => (
       </div>
     </section>
 
-    {/* ═══════════════════ SERVICES — warm gradient bg ═══════════════════ */}
+    {/* ═══════════════════ SERVICES ═══════════════════ */}
     <section className="section-gradient-warm py-24 sm:py-32">
       <div className="container mx-auto px-6">
         <SectionReveal>
@@ -227,9 +308,9 @@ const Index = () => (
             </div>
             <Link
               to="/services"
-              className="group flex items-center gap-2 font-display text-sm font-bold text-primary hover:text-accent transition-colors whitespace-nowrap"
+              className="group flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-display text-sm font-bold text-accent-foreground shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg whitespace-nowrap"
             >
-              View all services
+              View All Services
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
@@ -258,7 +339,25 @@ const Index = () => (
       </div>
     </section>
 
-    {/* ═══════════════════ HOW IT WORKS — teal gradient bg ═══════════════════ */}
+    {/* ═══════════════════ PARALLAX IMAGE BANNER — "Building Smiles That Last" ═══════════════════ */}
+    <section className="relative h-[60vh] sm:h-[70vh] flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0">
+        <img src={operatory} alt="Modern dental operatory" className="h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-foreground/70 via-foreground/60 to-foreground/80" />
+      </div>
+      <div className="relative z-10 text-center px-6">
+        <SectionReveal>
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary-foreground leading-tight max-w-3xl mx-auto">
+            Building Smiles That Last a Lifetime
+          </h2>
+          <p className="font-body text-lg sm:text-xl text-primary-foreground/70 mt-6 max-w-xl mx-auto">
+            Over 1,000 patients trust us with their dental health
+          </p>
+        </SectionReveal>
+      </div>
+    </section>
+
+    {/* ═══════════════════ HOW IT WORKS ═══════════════════ */}
     <section className="section-gradient-teal py-24 sm:py-32 relative">
       <div className="absolute inset-0 section-dots opacity-30 pointer-events-none" />
       <div className="container relative mx-auto px-6">
@@ -277,7 +376,6 @@ const Index = () => (
           {steps.map((step, i) => (
             <SectionReveal key={step.num} delay={i * 0.12}>
               <div className="relative">
-                {/* Connector line */}
                 {i < steps.length - 1 && (
                   <div className="hidden lg:block absolute top-10 left-[60%] w-full h-px border-t-2 border-dashed border-accent/30" />
                 )}
@@ -293,9 +391,51 @@ const Index = () => (
       </div>
     </section>
 
-    {/* ═══════════════════ TESTIMONIALS — dark section ═══════════════════ */}
+    {/* ═══════════════════ GALLERY PREVIEW ═══════════════════ */}
+    <section className="bg-background py-24 sm:py-32">
+      <div className="container mx-auto px-6">
+        <SectionReveal>
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="inline-block font-display text-sm font-semibold text-accent uppercase tracking-widest mb-4">Our Gallery</span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground">
+              See Our Work in <span className="text-accent">Action</span>
+            </h2>
+            <p className="font-body text-muted-foreground mt-5 leading-relaxed text-lg">
+              A glimpse into our modern facility, advanced procedures, and the beautiful smiles we create every day.
+            </p>
+          </div>
+        </SectionReveal>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5">
+          {galleryPreview.map((img, i) => (
+            <SectionReveal key={img.alt} delay={i * 0.08}>
+              <Link to="/gallery" className="group relative aspect-[4/3] rounded-2xl overflow-hidden block bg-muted">
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors duration-300" />
+              </Link>
+            </SectionReveal>
+          ))}
+        </div>
+        <SectionReveal delay={0.3}>
+          <div className="text-center mt-10">
+            <Link
+              to="/gallery"
+              className="group inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 font-display text-sm font-bold text-accent-foreground shadow-lg shadow-accent/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+            >
+              View Full Gallery
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </div>
+        </SectionReveal>
+      </div>
+    </section>
+
+    {/* ═══════════════════ TESTIMONIALS ═══════════════════ */}
     <section className="section-gradient-dark py-24 sm:py-32 relative overflow-hidden">
-      {/* Background glow */}
       <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent/10 blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
 
@@ -337,7 +477,7 @@ const Index = () => (
       </div>
     </section>
 
-    {/* ═══════════════════ FAQ — white with diagonal pattern ═══════════════════ */}
+    {/* ═══════════════════ FAQ ═══════════════════ */}
     <section className="bg-background py-24 sm:py-32 relative">
       <div className="absolute inset-0 section-diagonal opacity-40 pointer-events-none" />
       <div className="container relative mx-auto px-6">
@@ -375,7 +515,7 @@ const Index = () => (
       </div>
     </section>
 
-    {/* ═══════════════════ LOCATION — warm bg ═══════════════════ */}
+    {/* ═══════════════════ LOCATION ═══════════════════ */}
     <section className="section-gradient-warm py-24 sm:py-32">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -392,7 +532,7 @@ const Index = () => (
               {[
                 { icon: MapPin, label: "Address", value: "Karu, Abuja, Nigeria (Near INEC Office)", color: "text-primary", bg: "bg-primary/10" },
                 { icon: Clock, label: "Working Hours", value: "Mon – Sat: 9:00 AM – 5:30 PM", sub: "Sunday: Closed", color: "text-accent", bg: "bg-accent/10" },
-                { icon: Phone, label: "Phone", value: "+234 800 000 0000", color: "text-primary", bg: "bg-primary/10" },
+                { icon: Phone, label: "Phone", value: "+234 903 853 5214", color: "text-primary", bg: "bg-primary/10" },
               ].map((item) => (
                 <div key={item.label} className="flex items-start gap-4">
                   <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${item.bg}`}>
@@ -408,36 +548,22 @@ const Index = () => (
             </div>
           </SectionReveal>
           <SectionReveal delay={0.2}>
-            <div className="rounded-3xl overflow-hidden shadow-elevated aspect-video bg-muted">
-              <iframe
-                title="Rubi Smile Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31522.52408!2d7.55!3d9.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0a1!2sKaru!5e0!3m2!1sen!2sng!4v1"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+            {/* Clinic exterior image instead of map */}
+            <div className="rounded-3xl overflow-hidden shadow-elevated">
+              <img src={entranceSign} alt="Rubi Smile Dental Clinic entrance" className="w-full aspect-video object-cover" />
             </div>
           </SectionReveal>
         </div>
       </div>
     </section>
 
-    {/* ═══════════════════ CTA — accent gradient ═══════════════════ */}
+    {/* ═══════════════════ CTA ═══════════════════ */}
     <section className="section-gradient-dark py-24 sm:py-32 relative overflow-hidden">
-      {/* Decorative elements */}
       <div className="absolute inset-0 hero-glow pointer-events-none" />
       <motion.div
         className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-accent/10 blur-3xl"
         animate={{ scale: [1, 1.1, 1] }}
         transition={{ duration: 5, repeat: Infinity }}
-      />
-      <motion.div
-        className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-accent/8 blur-3xl"
-        animate={{ scale: [1, 1.15, 1] }}
-        transition={{ duration: 7, repeat: Infinity }}
       />
 
       <div className="container relative mx-auto px-6 text-center">
@@ -480,10 +606,6 @@ const Index = () => (
 );
 
 /* ─── FAQ Item Component ─── */
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
-import { AnimatePresence } from "framer-motion";
-
 const FaqItem = ({ question, answer }: { question: string; answer: string }) => {
   const [open, setOpen] = useState(false);
   return (
