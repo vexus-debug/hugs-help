@@ -17,7 +17,7 @@ import treatment1 from "@/assets/gallery/treatment-1.webp";
 import treatment2 from "@/assets/gallery/treatment-2.webp";
 import treatment3 from "@/assets/gallery/treatment-3.jpg";
 import orthodontics from "@/assets/gallery/orthodontics.webp";
-import reception from "@/assets/gallery/reception.webp";
+import reception from "@/assets/gallery/reception-desk.jpg";
 
 const WHATSAPP_NUMBER = "2349038535214";
 const CALL_NUMBER = "+2349024403837";

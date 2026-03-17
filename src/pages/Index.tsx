@@ -11,10 +11,10 @@ import SectionReveal from "@/components/SectionReveal";
 /* ─── Gallery image imports ─── */
 import heroImage from "@/assets/hero-clinic.jpg";
 import exterior from "@/assets/gallery/exterior.jpg";
-import waitingArea from "@/assets/gallery/waiting-area.jpg";
-import waitingArea2 from "@/assets/gallery/waiting-area-2.jpg";
-import reception from "@/assets/gallery/reception.webp";
-import frontDesk from "@/assets/gallery/front-desk.jpg";
+import waitingArea from "@/assets/gallery/waiting-lounge.jpg";
+import waitingArea2 from "@/assets/gallery/reception-lounge.jpg";
+import reception from "@/assets/gallery/reception-desk.jpg";
+import frontDesk from "@/assets/gallery/reception-desk.jpg";
 import dentalChair from "@/assets/gallery/dental-chair.webp";
 import operatory from "@/assets/gallery/operatory.jpg";
 import treatment1 from "@/assets/gallery/treatment-1.webp";

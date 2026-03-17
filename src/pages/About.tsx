@@ -11,10 +11,10 @@ import Layout from "@/components/Layout";
 // Gallery images
 import dentalTools from "@/assets/dental-tools.jpg";
 import clinicBanner from "@/assets/gallery/clinic-banner.webp";
-import reception from "@/assets/gallery/reception.webp";
-import waitingArea from "@/assets/gallery/waiting-area.jpg";
-import waitingArea2 from "@/assets/gallery/waiting-area-2.jpg";
-import frontDesk from "@/assets/gallery/front-desk.jpg";
+import reception from "@/assets/gallery/reception-desk.jpg";
+import waitingArea from "@/assets/gallery/waiting-lounge.jpg";
+import waitingArea2 from "@/assets/gallery/reception-lounge.jpg";
+import frontDesk from "@/assets/gallery/reception-desk.jpg";
 import exterior from "@/assets/gallery/exterior.jpg";
 import entranceSign from "@/assets/gallery/entrance-sign.jpg";
 import signage from "@/assets/gallery/signage.webp";

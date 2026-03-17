@@ -8,15 +8,15 @@ import treatment1 from "@/assets/gallery/treatment-1.webp";
 import treatment2 from "@/assets/gallery/treatment-2.webp";
 import treatment3 from "@/assets/gallery/treatment-3.jpg";
 import clinicBanner from "@/assets/gallery/clinic-banner.webp";
-import reception from "@/assets/gallery/reception.webp";
+import reception from "@/assets/gallery/reception-desk.jpg";
 import dentalChair from "@/assets/gallery/dental-chair.webp";
 import orthodontics from "@/assets/gallery/orthodontics.webp";
 import signage from "@/assets/gallery/signage.webp";
 import exterior from "@/assets/gallery/exterior.jpg";
-import waitingArea from "@/assets/gallery/waiting-area.jpg";
-import waitingArea2 from "@/assets/gallery/waiting-area-2.jpg";
+import waitingArea from "@/assets/gallery/waiting-lounge.jpg";
+import waitingArea2 from "@/assets/gallery/reception-lounge.jpg";
 import operatory from "@/assets/gallery/operatory.jpg";
-import frontDesk from "@/assets/gallery/front-desk.jpg";
+import frontDesk from "@/assets/gallery/reception-desk.jpg";
 import entranceSign from "@/assets/gallery/entrance-sign.jpg";
 
 const images = [
