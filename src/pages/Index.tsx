@@ -352,7 +352,7 @@ const Index = () => (
                 Got questions? We've got answers. If you don't find what you're looking for, reach out to us directly.
               </p>
               <a
-                href="https://wa.me/2348000000000"
+                href="https://wa.me/2349038535214"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center gap-2 font-display text-sm font-bold text-accent hover:text-primary transition-colors"
