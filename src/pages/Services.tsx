@@ -105,7 +105,7 @@ const Services = () => (
     <section className="bg-muted py-24">
       <div className="container mx-auto px-6 text-center">
         <SectionReveal>
-          <span className="font-display text-sm font-semibold text-primary uppercase tracking-wider">What We Offer</span>
+          <span className="font-display text-sm font-semibold text-accent uppercase tracking-wider">What We Offer</span>
           <h1 className="font-display text-5xl font-extrabold text-foreground mt-3">Our Services</h1>
           <p className="font-body text-muted-foreground mt-4 max-w-2xl mx-auto leading-relaxed">
             Comprehensive dental care for the whole family — from routine checkups to advanced procedures.
