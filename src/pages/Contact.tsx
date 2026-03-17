@@ -23,7 +23,7 @@ const Contact = () => (
             <h2 className="font-display text-3xl font-extrabold text-foreground mb-8">Get in touch</h2>
             <div className="space-y-6">
               {[
-                { icon: MapPin, label: "Visit Us", value: "No 6 November Street, Chief Palace Estate, Karu, Abuja" },
+                { icon: MapPin, label: "Visit Us", value: "No 6 November Street, near Chief Palace Layout, Karu, Abuja" },
                 { icon: Phone, label: "Call / Enquiry", value: "0902 440 3837" },
                 { icon: Mail, label: "Email Us", value: "rubiismiledentalclinic@gmail.com" },
                 { icon: Clock, label: "Working Hours", value: "Mon – Fri: 9:00 AM – 5:30 PM | Sat: 9:00 AM – 3:30 PM | Sun: Closed" },

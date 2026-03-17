@@ -31,7 +31,7 @@ const Footer = () => (
         <div>
           <h4 className="font-display text-sm font-semibold uppercase tracking-wider mb-4 opacity-50">Contact</h4>
           <div className="flex flex-col gap-3 text-sm font-body opacity-70">
-            <span className="flex items-start gap-2"><MapPin className="h-4 w-4 mt-0.5 shrink-0" /> No 6 November Street, Chief Palace Estate, Karu, Abuja</span>
+            <span className="flex items-start gap-2"><MapPin className="h-4 w-4 mt-0.5 shrink-0" /> No 6 November Street, near Chief Palace Layout, Karu, Abuja</span>
             <a href="https://wa.me/2349038535214" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-100 transition-opacity">
               <MessageCircle className="h-4 w-4 shrink-0" /> 0903 853 5214 (WhatsApp)
             </a>
