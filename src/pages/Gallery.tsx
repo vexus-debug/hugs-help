@@ -91,14 +91,14 @@ const Gallery = () => {
             <AnimatePresence mode="popLayout">
               {filtered.map((img, i) => (
                 <motion.div
-                  key={img.src}
+                  key={`${img.alt}-${i}`}
                   layout
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.35, delay: i * 0.04 }}
                   className="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer bg-muted"
-                  onClick={() => setSelected(images.indexOf(img))}
+                  onClick={() => setSelected(images.findIndex((x) => x.alt === img.alt))}
                 >
                   <img
                     src={img.src}
