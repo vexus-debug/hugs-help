@@ -49,7 +49,7 @@ const Contact = () => (
                 WhatsApp Us <ArrowRight className="h-4 w-4" />
               </a>
               <a
-                href="tel:+2348000000000"
+                href="tel:+2349024403837"
                 className="flex items-center gap-2 rounded-inner border border-border px-6 py-3 font-display text-sm font-bold text-foreground transition-all duration-200 hover:bg-muted"
               >
                 <Phone className="h-4 w-4" /> Call Now
