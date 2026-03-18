@@ -374,7 +374,7 @@ const Services = () => {
             <div className="text-center mb-16">
               <span className="font-display text-sm font-semibold text-accent uppercase tracking-wider">Why Rubi Smile</span>
               <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-foreground mt-3">
-                Why Patients Trust Us
+                {(c.why_heading as string) || "Why Patients Trust Us"}
               </h2>
             </div>
           </SectionReveal>
