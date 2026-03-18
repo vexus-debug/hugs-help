@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   Phone, Shield, Heart, Zap, ArrowRight, Star, Clock, MapPin,
   CheckCircle, Sparkles, Users, CalendarCheck, Award, MessageCircle,
-  ChevronRight, Quote, Stethoscope, SmilePlus, Baby, Scissors, ChevronDown
+  ChevronRight, Quote, Stethoscope, SmilePlus, Baby, Scissors, ChevronDown,
+  Send, Upload, Loader2
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "sonner";
 import SectionReveal from "@/components/SectionReveal";
 
 /* ─── Gallery image imports ─── */
@@ -491,6 +493,9 @@ const Index = () => {
       </div>
     </section>
 
+    {/* ═══════════════════ LEAVE A REVIEW ═══════════════════ */}
+    <ReviewFormSection />
+
     {/* ═══════════════════ FAQ ═══════════════════ */}
     <section className="bg-background py-24 sm:py-32 relative">
       <div className="absolute inset-0 section-diagonal opacity-40 pointer-events-none" />
@@ -646,6 +651,127 @@ const FaqItem = ({ question, answer }: { question: string; answer: string }) => 
         )}
       </AnimatePresence>
     </button>
+  );
+};
+
+/* ─── Review Form Component ─── */
+const ReviewFormSection = () => {
+  const [name, setName] = useState("");
+  const [text, setText] = useState("");
+  const [rating, setRating] = useState(5);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !text.trim()) return;
+    setSubmitting(true);
+    const { error } = await supabase.from("reviews").insert({
+      name: name.trim(),
+      review_text: text.trim(),
+      rating,
+    } as any);
+    if (error) {
+      toast.error("Failed to submit review");
+    } else {
+      setSubmitted(true);
+      setName(""); setText(""); setRating(5);
+      toast.success("Review submitted! It will appear after approval.");
+    }
+    setSubmitting(false);
+  };
+
+  return (
+    <section className="bg-background py-24 sm:py-32">
+      <div className="container mx-auto px-6 max-w-2xl">
+        <SectionReveal>
+          <div className="text-center mb-12">
+            <span className="inline-block font-display text-sm font-semibold text-accent uppercase tracking-widest mb-4">Share Your Experience</span>
+            <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-foreground">
+              Leave a <span className="text-accent">Review</span>
+            </h2>
+            <p className="font-body text-muted-foreground mt-4 text-lg">
+              Your feedback helps us improve and helps others find great dental care.
+            </p>
+          </div>
+        </SectionReveal>
+
+        <SectionReveal delay={0.15}>
+          <div className="rounded-3xl bg-card border border-border/50 p-8 shadow-card">
+            {submitted ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center py-8"
+              >
+                <CheckCircle className="h-12 w-12 text-accent mx-auto mb-4" />
+                <h3 className="font-display text-lg font-bold text-foreground">Thank you!</h3>
+                <p className="font-body text-sm text-muted-foreground mt-2">
+                  Your review has been submitted and will appear after approval.
+                </p>
+                <button onClick={() => setSubmitted(false)} className="mt-4 font-display text-sm font-semibold text-accent hover:text-accent/80">
+                  Submit another review
+                </button>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div>
+                  <label className="block font-display text-sm font-semibold text-foreground mb-2">Your Name</label>
+                  <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="e.g. Adaeze O."
+                    required
+                    className="w-full rounded-xl border border-border bg-background px-4 py-3 font-body text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent/50"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-display text-sm font-semibold text-foreground mb-2">Rating</label>
+                  <div className="flex gap-1">
+                    {[1, 2, 3, 4, 5].map((r) => (
+                      <button key={r} type="button" onClick={() => setRating(r)} className="p-1 transition-transform hover:scale-110">
+                        <Star className={`h-7 w-7 ${r <= rating ? "fill-accent text-accent" : "text-muted-foreground/30"}`} />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block font-display text-sm font-semibold text-foreground mb-2">Your Review</label>
+                  <textarea
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    placeholder="Tell us about your experience..."
+                    required
+                    rows={4}
+                    className="w-full rounded-xl border border-border bg-background px-4 py-3 font-body text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent/50 resize-none"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={submitting || !name.trim() || !text.trim()}
+                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 font-display text-sm font-bold text-primary-foreground transition-all hover:-translate-y-px hover:shadow-lg active:scale-[0.98] disabled:opacity-50"
+                >
+                  {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+                  {submitting ? "Submitting..." : "Submit Review"}
+                </button>
+              </form>
+            )}
+          </div>
+        </SectionReveal>
+
+        <SectionReveal delay={0.25}>
+          <div className="text-center mt-8">
+            <Link to="/reviews" className="group inline-flex items-center gap-2 font-display text-sm font-bold text-accent hover:text-primary transition-colors">
+              See all patient reviews
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+        </SectionReveal>
+      </div>
+    </section>
   );
 };
 
